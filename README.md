@@ -104,6 +104,7 @@ Animations are designed so that the program calls only one animation set at a ti
 Animation sets are managed by the Animation Manager which stores a list of animation sets and cycles through them.
 
 To add a new animation set, do the following:
+
 1. Create a new AnimSet class and header file in the Animation directory by duplicating and renaming AnimInputInfo.cpp/h
 2. Ensure that your new class extends AnimSet which is an abstract class
 3. Ensure that all virtual methods are overriden
