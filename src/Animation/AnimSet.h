@@ -30,9 +30,9 @@ public:
     virtual void draw() = 0; // abstract virtual fn must be overrided
     
 protected:
-    int duration;
-    bool hasEnded;
-    int elapsedTime;
+    int duration; // specify duration of the main animation
+    bool hasEnded; // check if this animation set has ended
+    int elapsedTime; // store how much time has elapsed
 };
 
 #endif /* defined(__example__AnimSet__) */

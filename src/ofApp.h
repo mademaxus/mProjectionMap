@@ -11,16 +11,12 @@
 
 class ofApp : public ofBaseApp {
 public:
-    ofApp() : ofBaseApp(){
-        //piMapper = new ofxPiMapper();
-        piMapper = CustomPiMapper::getInstance()->getPiMapper();
-    }
-    virtual ~ofApp();
+    ofApp();
+    virtual ~ofApp(); // virtual destructor to override ofBaseApp
     void setup();
     void draw();
     
 private:
-    
     ofxPiMapper* piMapper;
     AnimManager* animManager;
 

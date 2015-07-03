@@ -1,8 +1,15 @@
 //
-//  CustomPiMapper.h
+//  CustomPiMapper.cpp
 //  example
 //
-//  Created by Metalworks on 24/6/15.
+//  Created by Metalworks on 25/6/15.
+//
+//  Singleton class that initializes and some settings
+//	Initialized and destroyed by ofApp
+//	Creates ofxPiMapper class
+//	Creates 1 copy of all custom sources
+//	Creates 5 differed colored bg source
+//	Creates the font used in the projection map
 //
 //
 

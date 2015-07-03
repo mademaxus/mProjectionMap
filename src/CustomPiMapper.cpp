@@ -4,6 +4,13 @@
 //
 //  Created by Metalworks on 25/6/15.
 //
+//  Singleton class that initializes and some settings
+//	Initialized and destroyed by ofApp
+//	Creates ofxPiMapper class
+//	Creates 1 copy of all custom sources
+//	Creates 5 differed colored bg source
+//	Creates the font used in the projection map
+//
 //
 
 #include "CustomPiMapper.h"
@@ -14,12 +21,13 @@ CustomPiMapper* CustomPiMapper::instance = 0;
 CustomPiMapper::CustomPiMapper()
 {
     std::cout << "CustomPiMapper Created\n";
-    //private constructor
+
     customPiMapper = new ofxPiMapper();
     customSource = new CustomSource();
     textSource = new TextSource();
     blankSource = new BlankSource();
 
+		// Store size of color array and current index pointer
     coloredBgSize = 5;
     coloredBgIndex = 0;
     coloredBgArr.push_back(new ColoredBgSource(ofColor(248,155,48), "Color 1 Bg Source"));
@@ -34,6 +42,8 @@ CustomPiMapper::CustomPiMapper()
     colorArr.push_back(ofColor(11,183,170));
     colorArr.push_back(ofColor(240,110,165));
     
+		// Font: Update the font in bin/data if required
+		// Change font name in loadFont method
     displayFont = new ofTrueTypeFont();
     displayFont->loadFont("AldotheApache.ttf", 30);
 }
@@ -77,11 +87,15 @@ TextSource* CustomPiMapper::getTextSource(){
 BlankSource* CustomPiMapper::getBlankSource(){
     return blankSource;
 }
+// Get a ColoredBg according to the index pointer
+// Automatically increases the index pointer to the next colour
 ColoredBgSource* CustomPiMapper::getColoredBgSource(){
     ColoredBgSource* bg = coloredBgArr[coloredBgIndex];
     coloredBgIndex = (coloredBgIndex+1)%coloredBgSize;
     return bg;
 }
+// Get a specfic color according to the index pointer
+// Automatically increases the index pointer to the next colour
 ofColor CustomPiMapper::getColor(){
     ofColor color = colorArr[coloredBgIndex];
     coloredBgIndex = (coloredBgIndex+1)%coloredBgSize;

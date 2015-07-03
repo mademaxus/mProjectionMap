@@ -5,13 +5,19 @@
 //  Created by Metalworks on 23/6/15.
 //
 //
-#include <vector>
-#include "InputInfo.h"
 
 #ifndef example_InputInfoManager_h
 #define example_InputInfoManager_h
 
+/*
+ * Stores and manages all the InputInfo specified by the user
+ * Created by AnimManager to be passed to different animation sets
+ */
+
 #define USER_INPUT_FILENAME "users.xml"
+
+#include <vector>
+#include "InputInfo.h"
 
 using namespace std;
 
@@ -26,13 +32,13 @@ public:
     int getCurrentIndex();
     
 private:
-    int currentIndex;
+    int currentIndex,currentDisplayIndex;
     vector<InputInfo> inputInfoList;
     ofxXmlSettings xmlUserInput;
     
-    int currentDisplayIndex;
     vector<InputDisplay> inputDisplayList;
     
+		void loadUserInputXml();
 };
 
 #endif

@@ -22,6 +22,7 @@ using namespace std;
 
 /****
  ** Displays an image, a text and animations on other frames
+ ** Has a flyIn and flyOut method to draw enter and exit animations
  **/
 
 class AnimInputInfo : public AnimSet{
@@ -38,22 +39,17 @@ private:
 
     string imagePath;
     string displayText;
-    int imageSurfaceId;
-    int textSurfaceId;
+    int imageSurfaceId, textSurfaceId;
     float percentMoved;
     
     // Used to track animation within this class
-    int currentElapsedTime;
-    int updateInterval;
+    int flyInNum, updateInterval, surfacesSize, currentElapsedTime;
     bool canFlyIn, canFlyOut;
-    int flyInNum;
-    int surfacesSize;
     vector<int> shuffledSurfaceIdArr;
     
     void flyIn();
     void flyOut();
     void reset();
     void updateInputInfo();
-
 };
 #endif /* defined(__example__AnimInputInfo__) */

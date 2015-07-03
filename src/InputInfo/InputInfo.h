@@ -9,6 +9,13 @@
 #ifndef example_InputInfo_h
 #define example_InputInfo_h
 
+/*
+ * InputInfo struct stores path of image and corresponding text
+ *
+ * InputDisplay struct stores surfaceId for the image and text
+ * Texture mapping for images and text should be manually adjusted and predefined
+ */
+
 #include <string>
 #include "CustomPiMapper.h"
 

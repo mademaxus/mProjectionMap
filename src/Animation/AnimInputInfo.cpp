@@ -11,10 +11,6 @@
 #include "TextSource.h"
 #include "BlankSource.h"
 
-/*******************
- ** PUBLIC
- ******************/
-
 AnimInputInfo::AnimInputInfo(InputInfoManager* _inputInfoManager, int _duration) : AnimSet(_duration){
     piMapper = CustomPiMapper::getInstance()->getPiMapper();
     inputInfoManager = _inputInfoManager;
@@ -22,8 +18,12 @@ AnimInputInfo::AnimInputInfo(InputInfoManager* _inputInfoManager, int _duration)
     
     reset();
     updateInterval = 15;
-    surfacesSize = piMapper->getSurfaceManager().size(); // setup piMapper before calling size
+		// piMapper must be created and setup
+		// Store the total number of surfaces 
+    surfacesSize = piMapper->getSurfaceManager().size();
 
+		// Shuffle the surface ids to randomise the draw order of the surfaces
+		// Used for flyIn and flyOut
     for(int i=0; i<surfacesSize; i++){
         shuffledSurfaceIdArr.push_back(i);
     }
@@ -62,6 +62,7 @@ void AnimInputInfo::flyIn(){
         int shuffleIndex = shuffledSurfaceIdArr[flyInNum];
         ofx::piMapper::BaseSurface* surface = piMapper->getSurfaceManager().getSurface(shuffleIndex);
         if(imageSurfaceId == shuffleIndex){
+						// Surface containing image
             userImage->loadImage(imagePath);
             surface->setSource(userImage);
             
@@ -78,9 +79,11 @@ void AnimInputInfo::flyIn(){
             ColoredBgSource* bgSource = CustomPiMapper::getInstance()->getColoredBgSource();
             surface->setSource(bgSource);
         }
+				// Increase the flyInNum pointer to load the next surface
         flyInNum++;
         currentElapsedTime = ofGetElapsedTimeMillis();
     }else{
+				// Set to false for main animation to play
         canFlyIn = false;
     }
 }
@@ -88,6 +91,7 @@ void AnimInputInfo::flyIn(){
 void AnimInputInfo::flyOut(){
     // Perform flyOut animation only for number of surfaces
     if(flyInNum > 0){
+				// Decrease the flyInNum pointer to remove the next surface
         flyInNum--;
         
         int shuffleIndex = shuffledSurfaceIdArr[flyInNum];
@@ -98,6 +102,7 @@ void AnimInputInfo::flyOut(){
         // Change the value of duration so the flyout according to updateInterval
         currentElapsedTime = ofGetElapsedTimeMillis();
     }else{
+				// Set to true to load next animation set
         hasEnded = true;
     }
 }
@@ -114,7 +119,8 @@ void AnimInputInfo::draw(){
         }else if(canFlyOut){
             flyOut();
         }
-    }else{
+    }
+		if(!canFlyIn && !canFlyOut){
         /*
         // Test Animation on the surface
         if(percentMoved < 1){
@@ -142,9 +148,6 @@ void AnimInputInfo::draw(){
     }
 }
 
-/*******************
- ** PRIVATE
- ******************/
 void AnimInputInfo::setup(){
     
     std::cout << "New Setup\n";

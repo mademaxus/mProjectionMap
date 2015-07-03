@@ -12,9 +12,12 @@
 AnimManager::AnimManager(){
     inputInfoManager = new InputInfoManager();
 
+		// currentIndex points to the first AnimationSet
+    currentIndex = 0;
+		
 		// Adds the AnimInputInfo class to the animation array
 		// Each AnimInputInfo represents one image/text
-    currentIndex = 0;
+		// Note: AnimInputInfo extends AnimSet
     animSetArr.push_back(new AnimInputInfo(inputInfoManager, 9000));
     animSetArr.push_back(new AnimInputInfo(inputInfoManager, 9000));
 }
@@ -34,9 +37,13 @@ AnimManager::~AnimManager(){
     }
 }
 
+// Setup the first animation set for playing
 void AnimManager::setup(){
     animSetArr[currentIndex]->setup();
 }
+// Draws the current animation set on every draw call
+// When an animation set has ended, increase the index pointer
+// Call the next animation set by setting it up
 void AnimManager::draw(){
     AnimSet* animSet = animSetArr[currentIndex];
 		
