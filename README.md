@@ -123,7 +123,24 @@ AnimManager::AnimManager(){
 }
 ```
 
-### 4. Notes
+### 4. Update Images and Text
+You may update the image and text by editing the users.xml file in _OF_ROOT/apps/myApps/mProjectionMap/bin/data_.
+
+````xml
+<users>
+   ...
+    <user>
+        <image>NewImage.jpg</image>
+        <text>New Image</text>
+    </user>
+    ...
+</users>
+````
+users.xml
+
+Add a new image and its corresponding text by specifying another set of user tag as seen in the snippet above. The image should be placed in the folder _OF_ROOT/apps/myApps/mProjectionMap/bin/data/sources/images/_.
+
+### 5. Notes
 
 #### Clock Skew Error
 You may encounter a clock skew error when recompiling modified codes. This means that the timestamps of the files are not synchronized and cannot be compiled. You will see a list of affected files during compile time. This may be resolved by changing to the specified directory and running the following command.
