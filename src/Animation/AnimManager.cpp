@@ -19,7 +19,7 @@ AnimManager::AnimManager(){
 		// Each AnimInputInfo represents one image/text
 		// Note: AnimInputInfo extends AnimSet
     animSetArr.push_back(new AnimInputInfo(inputInfoManager, 9000));
-    animSetArr.push_back(new AnimInputInfo(inputInfoManager, 9000));
+    //animSetArr.push_back(new AnimInputInfo(inputInfoManager, 9000));
 }
 
 AnimManager::~AnimManager(){
