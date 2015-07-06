@@ -61,6 +61,7 @@ If you have any doubts about a particular class or wish to find out about the AP
 
 ###1. Brief Overview
 The design of the program consists of 4 main components:
+
 1. CustomSource: Creates different custom sources that is mapped onto each surface
 2. Animation: Components that organises and manages the animation
 3. InputInfo: Manages the user inputs which consists of different images and texts read from an XML file
